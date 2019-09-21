@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
 const dogsRouter = require('./routes/dogs');
+const usersRouter = require('./routes/users')
 
 mongoose.connect('mongodb://127.0.0.1:27017/pets2DB',
     { useNewUrlParser: true, useUnifiedTopology: true }
@@ -20,6 +21,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/users', usersRouter);
 app.use('/dogs', dogsRouter);
 
 app.use((error, req, res, next) => {
